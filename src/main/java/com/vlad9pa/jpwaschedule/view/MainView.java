@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Route("")
 @Component
 @Scope("prototype")
-public class MainView extends VerticalLayout {
+public class MainView extends VerticalLayout{
 
     private final ScheduleService scheduleService;
 
@@ -24,6 +24,7 @@ public class MainView extends VerticalLayout {
     @Autowired
     public MainView(ScheduleService scheduleService) {
         this.scheduleService = scheduleService;
+
 
         inOffice = scheduleService.isInOffice();
 
@@ -48,7 +49,7 @@ public class MainView extends VerticalLayout {
         Button changeViewButton = new Button();
         changeViewButton.setText("Look at schedule");
         changeViewButton.addClickListener(buttonClickEvent -> {
-            Notification.show("Not yet implemented");
+            changeViewButton.getUI().ifPresent(ui -> ui.navigate("schedule"));
         });
 
         add(label);
